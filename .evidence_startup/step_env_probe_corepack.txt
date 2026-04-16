@@ -1,0 +1,5 @@
+COMMAND: which corepack && corepack --version
+EXIT_CODE: 0
+STDOUT_STDERR:
+/usr/bin/corepack
+0.34.5

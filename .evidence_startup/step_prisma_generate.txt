@@ -1,0 +1,3 @@
+COMMAND: cd /home/openclaw/.openclaw/workspace/proj_vx_wuq_0001_repo && pnpm --filter @mvp/api exec prisma generate
+bash: line 1: pnpm: command not found
+EXIT_CODE: 127

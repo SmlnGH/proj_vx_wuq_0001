@@ -1,0 +1,8 @@
+PATH=/home/openclaw/.openclaw/workspace/proj_vx_wuq_0001_repo/apps/api/src/pages/api/legal/consent-versions.ts
+test -f RESULT=true
+wc -l:
+0 /home/openclaw/.openclaw/workspace/proj_vx_wuq_0001_repo/apps/api/src/pages/api/legal/consent-versions.ts
+sha256sum:
+745958dde735c7d02ddce4b8df2dcf1620a3e6e6799634048c8b6c7d2a066f3f  /home/openclaw/.openclaw/workspace/proj_vx_wuq_0001_repo/apps/api/src/pages/api/legal/consent-versions.ts
+HEAD20:
+import type { NextApiRequest, NextApiResponse } from \"next\";\nimport { prisma } from \"../../../lib/prisma\";\nimport { ok, err } from \"@shared/types/api\";\n\nconst REQUIRED_KEYS = [\"disclaimer\",\"privacy\",\"refund\",\"cookie\"] as const;\n\nexport default async function handler(req: NextApiRequest, res: NextApiResponse) {\n  if (req.method !== \"GET\") return res.status(405).end();\n\n  const items = await prisma.consentVersion.findMany({\n    where: { key: { in: REQUIRED_KEYS as any } },\n    select: { id: true, key: true, version: true, contentHash: true },\n  });\n\n  const byKey = new Map(items.map((x) => [x.key, x] as const));\n  const missingKeys = REQUIRED_KEYS.filter((k) => !byKey.get(k));\n  if (missingKeys.length) {\n    return res.status(404).json(err(\"CONSENT_VERSION_MISSING\", \"Missing one or more required consent versions.\", { missingKeys }));\n  }\n\n  return res.status(200).json(\n    ok({\n      items: REQUIRED_KEYS.map((k) => {\n        const row = byKey.get(k)!;\n        return { key: row.key, id: row.id, version: row.version, contentHash: row.contentHash };\n      }),\n    })\n  );\n}\n
