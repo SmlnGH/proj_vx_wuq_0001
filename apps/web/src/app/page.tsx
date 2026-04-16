@@ -1,37 +1,42 @@
-import React from "react";
+import React from 'react';
+import type { Lang } from '../components/i18n/locale';
+import { t } from '../components/i18n/locale';
+import HeroSection from '../components/marketing/HeroSection';
+import BrandValuesSection from '../components/marketing/BrandValuesSection';
+import EntryCardsSection from '../components/marketing/EntryCardsSection';
+import TrustProcessSection from '../components/marketing/TrustProcessSection';
+import FaqSection from '../components/marketing/FaqSection';
+import Footer from '../components/marketing/Footer';
+import LegalLinks from '../components/legal/LegalLinks';
+
+// IMPORTANT: keep / as direct HTML render (no redirect-only flow).
+// We default to zh copy; users can switch via visible LanguageSwitcher.
+const lang: Lang = 'zh';
 
 export default function HomePage() {
   return (
-    <main style={{ maxWidth: 980, margin: "0 auto", padding: 24, fontFamily: "system-ui" }}>
-      <h1 style={{ fontSize: 28, fontWeight: 700, marginBottom: 12 }}>Five-Element Fortune Network</h1>
-      <p style={{ marginBottom: 18, lineHeight: 1.6 }}>
-        This is the Phase 1/1.1/1.2 homepage minimal landing page for <strong>proj_vx_wuq_0001</strong>.
-        
-        <br />
-        <span style={{ color: "#555" }}>
-          (Language switching is handled under <code>/[lang]</code> routes.)
-        </span>
-      </p>
+    <div style={{ background: '#fff', color: '#111', fontFamily: 'system-ui' }}>
+      <header style={{ maxWidth: 980, margin: '0 auto', padding: '18px 24px 0' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16 }}>
+          <div style={{ fontWeight: 800 }}>{t('siteName', lang)}</div>
+          <nav style={{ display: 'flex', gap: 14, fontSize: 13, color: '#444' }}>
+            <a href="/#" style={{ textDecoration: 'none', color: '#444' }}>{t('navHome', lang)}</a>
+            <a href={`/${lang}/ai-tarot`} style={{ textDecoration: 'none', color: '#444' }}>{t('navAi', lang)}</a>
+            <a href={`/${lang}/vip-tarot`} style={{ textDecoration: 'none', color: '#444' }}>{t('navVip', lang)}</a>
+            <a href={`/${lang}/shop`} style={{ textDecoration: 'none', color: '#444' }}>{t('navShop', lang)}</a>
+          </nav>
+        </div>
+      </header>
 
-      <section style={{ border: "1px solid #e5e5e5", borderRadius: 12, padding: 16, marginBottom: 14 }}>
-        <h2 style={{ fontSize: 18, fontWeight: 650, marginBottom: 8 }}>Quick Links</h2>
-        <ul style={{ paddingLeft: 18, margin: 0, lineHeight: 1.8 }}>
-          <li>
-            <a href="/en/checkout" style={{ color: "#2563eb" }}>
-              /en/checkout
-            </a>
-          </li>
-          <li>
-            <a href="/zh/checkout" style={{ color: "#2563eb" }}>
-              /zh/checkout
-            </a>
-          </li>
-        </ul>
-      </section>
-
-      <p style={{ color: "#666", fontSize: 13 }}>
-        Note: Keep this page as a direct HTML-rendering default route (GET / must return 200 with HTML).
-      </p>
-    </main>
+      <div style={{ maxWidth: 980, margin: '0 auto', padding: '0 24px' }}>
+        <HeroSection lang={lang} />
+        <BrandValuesSection lang={lang} />
+        <EntryCardsSection lang={lang} />
+        <TrustProcessSection lang={lang} />
+        <LegalLinks lang={lang} />
+        <FaqSection lang={lang} />
+        <Footer lang={lang} />
+      </div>
+    </div>
   );
 }
