@@ -1,7 +1,0 @@
-{
-  "project_id": "vx_wuq_0001",
-  "knowledge_root": "knowledge_root",
-  "initialized_at": "2026-04-07T14:20:41Z",
-  "baseline": "Release v1 (frozen)",
-  "note": "minimal onboarding scaffold; runner-driven governance happens when objects are provided"
-}

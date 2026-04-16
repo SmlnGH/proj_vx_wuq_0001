@@ -1,8 +1,0 @@
-{
-  "name": "proj-vx-wuq-repo",
-  "private": true,
-  "packageManager": "pnpm@9.0.0",
-  "scripts": {
-    "dev": "echo \\\"Run per app: pnpm --filter api dev && pnpm --filter web dev\\\""
-  }
-}

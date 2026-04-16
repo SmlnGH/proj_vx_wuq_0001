@@ -1,4 +1,0 @@
-COMMAND: which pnpm && pnpm -v
-EXIT_CODE: 1
-STDOUT_STDERR:
-
