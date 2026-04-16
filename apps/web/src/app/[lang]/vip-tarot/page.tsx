@@ -17,11 +17,17 @@ export default function VipTarotPage({ params }: { params: { lang: Lang } }) {
           <li>{lang === 'zh' ? '完成个性化沟通入口（展示层先行）' : 'Complete personalized consultation entry (display first)'}</li>
         </ol>
         <div style={{ marginTop: 12, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-          <a href={`/${lang}/ai-tarot`} style={{ border: '1px solid #e5e5e5', color: '#111', padding: '10px 14px', borderRadius: 999, textDecoration: 'none' }}>
-            {lang === 'zh' ? '先试 AI 占卜 →' : 'Try AI Fortune first →'}
+          <a
+            href={`/${lang}/vip-tarot/next`}
+            style={{ border: '1px solid #2563eb', color: '#2563eb', padding: '10px 14px', borderRadius: 999, textDecoration: 'none' }}
+          >
+            {lang === 'zh' ? '下一步 →' : 'Next →'}
           </a>
-          <a href={`/${lang}/shop`} style={{ border: '1px solid #e5e5e5', color: '#111', padding: '10px 14px', borderRadius: 999, textDecoration: 'none' }}>
-            {lang === 'zh' ? '商城入口 →' : 'Shop entry →'}
+          <a
+            href={`/${lang}/shop`}
+            style={{ border: '1px solid #e5e5e5', color: '#111', padding: '10px 14px', borderRadius: 999, textDecoration: 'none' }}
+          >
+            {lang === 'zh' ? '查看商城 →' : 'Visit Shop →'}
           </a>
         </div>
       </section>

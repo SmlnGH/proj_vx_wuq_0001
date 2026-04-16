@@ -9,8 +9,6 @@ import FaqSection from '../components/marketing/FaqSection';
 import Footer from '../components/marketing/Footer';
 import LegalLinks from '../components/legal/LegalLinks';
 
-// IMPORTANT: keep / as direct HTML render (no redirect-only flow).
-// We default to zh copy; users can switch via visible LanguageSwitcher.
 const lang: Lang = 'zh';
 
 export default function HomePage() {
@@ -20,7 +18,7 @@ export default function HomePage() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16 }}>
           <div style={{ fontWeight: 800 }}>{t('siteName', lang)}</div>
           <nav style={{ display: 'flex', gap: 14, fontSize: 13, color: '#444' }}>
-            <a href="/#" style={{ textDecoration: 'none', color: '#444' }}>{t('navHome', lang)}</a>
+            <a href="/" style={{ textDecoration: 'none', color: '#444' }}>{t('navHome', lang)}</a>
             <a href={`/${lang}/ai-tarot`} style={{ textDecoration: 'none', color: '#444' }}>{t('navAi', lang)}</a>
             <a href={`/${lang}/vip-tarot`} style={{ textDecoration: 'none', color: '#444' }}>{t('navVip', lang)}</a>
             <a href={`/${lang}/shop`} style={{ textDecoration: 'none', color: '#444' }}>{t('navShop', lang)}</a>

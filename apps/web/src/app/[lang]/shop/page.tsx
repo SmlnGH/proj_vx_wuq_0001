@@ -11,14 +11,18 @@ export default function ShopPage({ params }: { params: { lang: Lang } }) {
       <LegalLinks lang={lang} />
       <section style={{ border: '1px solid #e5e5e5', borderRadius: 16, padding: 18, marginTop: 16 }}>
         <h2 style={{ fontSize: 20, margin: 0 }}>{lang === 'zh' ? '精选入口（展示）' : 'Featured Entries (Display)'}</h2>
-        <div style={{ marginTop: 12, display: 'grid', gap: 12, gridTemplateColumns: 'repeat(2, minmax(0, 1fr))' }}>
-          <a href="#" style={{ border: '1px solid #e5e5e5', borderRadius: 14, padding: 14, textDecoration: 'none', color: '#111' }}>
-            <div style={{ fontWeight: 700 }}>{lang === 'zh' ? '定制服务包' : 'Premium Service Bundle'}</div>
-            <div style={{ marginTop: 6, color: '#444', fontSize: 13 }}>{lang === 'zh' ? 'VIP 沟通 + 信任流程' : 'VIP communication + trust flow'}</div>
+        <div style={{ marginTop: 12, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+          <a
+            href={`/${lang}/shop/next`}
+            style={{ border: '1px solid #e5e5e5', color: '#111', padding: '10px 14px', borderRadius: 999, textDecoration: 'none' }}
+          >
+            {lang === 'zh' ? '下一步 →' : 'Next →'}
           </a>
-          <a href="#" style={{ border: '1px solid #e5e5e5', borderRadius: 14, padding: 14, textDecoration: 'none', color: '#111' }}>
-            <div style={{ fontWeight: 700 }}>{lang === 'zh' ? '双语咨询' : 'Bilingual Consultation'}</div>
-            <div style={{ marginTop: 6, color: '#444', fontSize: 13 }}>{lang === 'zh' ? 'zh/en 展示与引导' : 'zh/en display & guidance'}</div>
+          <a
+            href={`/${lang}/vip-tarot`}
+            style={{ border: '1px solid #e5e5e5', color: '#111', padding: '10px 14px', borderRadius: 999, textDecoration: 'none' }}
+          >
+            {lang === 'zh' ? '需要更深沟通 →' : 'Need deeper communication →'}
           </a>
         </div>
       </section>
