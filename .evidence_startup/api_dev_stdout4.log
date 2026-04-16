@@ -1,0 +1,13 @@
+
+> @mvp/api@0.1.0 dev /home/openclaw/.openclaw/workspace/proj_vx_wuq_0001_repo/apps/api
+> next dev -p 3001
+
+  ▲ Next.js 14.2.5
+  - Local:        http://localhost:3001
+
+ ✓ Starting...
+ ✓ Ready in 2.3s
+ ○ Compiling /api/orders ...
+ POST /api/orders 500 in 2788ms
+ POST /api/orders 500 in 16ms
+[?25h

@@ -1,0 +1,20 @@
+ ⨯ ./src/pages/api/orders/index.ts:2:1
+Module not found: Can't resolve '../../../../lib/prisma'
+[0m [90m 1 |[39m [36mimport[39m type { [33mNextApiRequest[39m[33m,[39m [33mNextApiResponse[39m } [36mfrom[39m [32m"next"[39m[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 2 |[39m [36mimport[39m { prisma } [36mfrom[39m [32m"../../../../lib/prisma"[39m[33m;[39m[0m
+[0m [90m   |[39m [31m[1m^[22m[39m[0m
+[0m [90m 3 |[39m[0m
+[0m [90m 4 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m handler(req[33m:[39m [33mNextApiRequest[39m[33m,[39m res[33m:[39m [33mNextApiResponse[39m) {[0m
+[0m [90m 5 |[39m   [36mif[39m (req[33m.[39mmethod [33m!==[39m [32m"POST"[39m) [36mreturn[39m res[33m.[39mstatus([35m405[39m)[33m.[39mend()[33m;[39m[0m
+
+https://nextjs.org/docs/messages/module-not-found
+ ⨯ ./src/pages/api/orders/index.ts:2:1
+Module not found: Can't resolve '../../../../lib/prisma'
+[0m [90m 1 |[39m [36mimport[39m type { [33mNextApiRequest[39m[33m,[39m [33mNextApiResponse[39m } [36mfrom[39m [32m"next"[39m[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 2 |[39m [36mimport[39m { prisma } [36mfrom[39m [32m"../../../../lib/prisma"[39m[33m;[39m[0m
+[0m [90m   |[39m [31m[1m^[22m[39m[0m
+[0m [90m 3 |[39m[0m
+[0m [90m 4 |[39m [36mexport[39m [36mdefault[39m [36masync[39m [36mfunction[39m handler(req[33m:[39m [33mNextApiRequest[39m[33m,[39m res[33m:[39m [33mNextApiResponse[39m) {[0m
+[0m [90m 5 |[39m   [36mif[39m (req[33m.[39mmethod [33m!==[39m [32m"POST"[39m) [36mreturn[39m res[33m.[39mstatus([35m405[39m)[33m.[39mend()[33m;[39m[0m
+
+https://nextjs.org/docs/messages/module-not-found

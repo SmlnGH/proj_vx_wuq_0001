@@ -1,0 +1,27 @@
+PATH=/home/openclaw/.openclaw/workspace/proj_vx_wuq_0001_repo/apps/web/src/app/[lang]/checkout/page.tsx
+test -f RESULT=true
+wc -l:
+138 /home/openclaw/.openclaw/workspace/proj_vx_wuq_0001_repo/apps/web/src/app/[lang]/checkout/page.tsx
+sha256sum:
+f35b616412a81c0c6c1c97f4679ba494ef3f62868a50d055216aef177e49d722  /home/openclaw/.openclaw/workspace/proj_vx_wuq_0001_repo/apps/web/src/app/[lang]/checkout/page.tsx
+HEAD20:
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+
+type ConsentKey = "disclaimer" | "privacy" | "refund" | "cookie";
+
+type ConsentVersionsItem = {
+  key: ConsentKey;
+  id: string;
+  version: string;
+  contentHash: string | null;
+};
+
+type ConsentVersionsResp = {
+  ok: true;
+  data: { items: ConsentVersionsItem[] };
+};
+
+export default function CheckoutPage() {
+  const [items, setItems] = useState<ConsentVersionsItem[] | null>(null);

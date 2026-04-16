@@ -1,0 +1,5 @@
+COMMAND: which npm && npm -v
+EXIT_CODE: 0
+STDOUT_STDERR:
+/usr/bin/npm
+11.6.2

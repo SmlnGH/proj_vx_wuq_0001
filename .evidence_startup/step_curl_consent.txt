@@ -1,0 +1,4 @@
+COMMAND: curl -sS -o /dev/null -w "%{http_code}\n" http://localhost:3001/api/legal/consent-versions
+curl: (7) Failed to connect to localhost port 3001 after 0 ms: Couldn't connect to server
+000
+EXIT_CODE: 7

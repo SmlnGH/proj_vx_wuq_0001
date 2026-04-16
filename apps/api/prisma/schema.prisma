@@ -1,0 +1,185 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum OrderStatus {
+  submitted
+  paid
+  in_delivery
+  delivered
+  refund_requested
+  partially_refunded
+  canceled
+}
+
+enum PaymentStatus {
+  processing
+  succeeded
+  failed
+  canceled
+}
+
+enum ReportStatus {
+  draft
+  published
+  archived
+}
+
+enum PdfJobStatus {
+  pending
+  ready
+  failed
+}
+
+enum AppointmentStatus {
+  scheduled
+  canceled
+  completed
+}
+
+enum ConsentKey {
+  disclaimer
+  privacy
+  refund
+  cookie
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  displayName  String?
+  locale       String   @default("zh")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  orders          Order[]
+  consentLogs     ConsentLog[]
+  actorUserLogs  AuditLog[]
+}
+
+model ConsentVersion {
+  id          String   @id @default(uuid())
+  key         ConsentKey
+  version     String
+  contentHash String?
+  createdAt   DateTime @default(now())
+
+  @@unique([key, version])
+}
+
+model Order {
+  id             String @id @default(uuid())
+  userId         String
+  user           User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  packageCode    String
+  paymentIntentId String? @unique
+  status         OrderStatus @default(submitted)
+
+  amountCurrency String
+  amountTotal    Decimal
+
+  submittedAt    DateTime?
+  paidAt         DateTime?
+  deliveredAt    DateTime?
+
+  refundAmount     Decimal?
+  refundReasonCode String?
+
+  report        Report?
+  payments      Payment?
+  appointment    Appointment?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId, status])
+}
+
+model Payment {
+  id             String @id @default(uuid())
+  orderId        String @unique
+  order          Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  provider       String @default("stripe")
+  paymentIntentId String @unique
+  status         PaymentStatus @default(processing)
+
+  amountReceived Decimal?
+  currency       String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Appointment {
+  id        String @id @default(uuid())
+  orderId   String @unique
+  order     Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  timezone  String
+  startAt   DateTime
+  endAt     DateTime
+  status    AppointmentStatus @default(scheduled)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Report {
+  id             String @id @default(uuid())
+  orderId        String @unique
+  order          Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  templateCode   String
+  contentHtml    String
+  contentVersion Int
+
+  status         ReportStatus @default(draft)
+  publishedAt    DateTime?
+
+  pdfGenerationStatus PdfJobStatus?
+  pdfStorageKey       String?
+
+  pdfAttemptCount     Int @default(0)
+  pdfLastAttemptAt    DateTime?
+  pdfLastErrorCode    String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ConsentLog {
+  id String @id @default(uuid())
+  userId String?
+  user   User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  orderId String?
+
+  formType String
+  consentDisclaimerVersion String
+  consentPrivacyVersion    String
+  consentRefundVersion     String
+  consentCookieVersion     String?
+  consentTimestamp         DateTime
+
+  createdAt DateTime @default(now())
+}
+
+model AuditLog {
+  id String @id @default(uuid())
+  actorUserId String?
+  actorUser User? @relation(fields: [actorUserId], references: [id], onDelete: SetNull)
+
+  action String
+  entityType String
+  entityId String
+  metadata Json?
+  createdAt DateTime @default(now())
+}
