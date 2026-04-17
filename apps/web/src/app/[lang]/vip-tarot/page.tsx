@@ -6,6 +6,7 @@ import type { Lang } from '../../../components/i18n/locale';
 import { t } from '../../../components/i18n/locale';
 import ContentPageTemplate from '../../../components/marketing/templates/ContentPageTemplate';
 import { uiTheme } from '../../../components/marketing/theme';
+
 import LegalLinks from '../../../components/legal/LegalLinks';
 
 export default function VipTarotPage({ params }: { params: { lang: Lang } }) {
