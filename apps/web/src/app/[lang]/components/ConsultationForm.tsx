@@ -1,19 +1,17 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import type { Lang } from '../../../components/i18n/locale';
 
 export type ConsultationFormVariant = 'ai' | 'vip' | 'shop';
 
-export default function ConsultationForm({
-  lang,
-  variant,
-  onSuccess,
-}: {
+type ConsultationFormProps = {
   lang: Lang;
   variant: ConsultationFormVariant;
   onSuccess: () => void;
-}) {
-  const copy = (() => {
+};
+
+export default function ConsultationForm({ lang, variant, onSuccess }: ConsultationFormProps) {
+  const copy = useMemo(() => {
     if (variant === 'ai') {
       return {
         step1: lang === 'zh' ? '选择偏好' : 'Choose preferences',
@@ -23,10 +21,14 @@ export default function ConsultationForm({
         c1: lang === 'zh' ? '微信/邮箱（可选）' : 'WeChat/Email (optional)',
         c2: lang === 'zh' ? '是否需要 VIP 人工跟进？' : 'Do you want VIP human follow-up?',
         step3: lang === 'zh' ? '确认并完成' : 'Confirm & finish',
-        disclaimer: lang === 'zh' ? '我已阅读并理解免责声明/隐私说明/服务边界（展示层）。' : 'I have read and understood the disclaimer/privacy notice/service boundary (display layer).',
+        disclaimer:
+          lang === 'zh'
+            ? '我已阅读并理解免责声明/隐私说明/服务边界（展示层）。'
+            : 'I have read and understood the disclaimer/privacy notice/service boundary (display layer).',
         btn: lang === 'zh' ? '确认并预约成功 →' : 'Confirm & book success →',
       };
     }
+
     if (variant === 'vip') {
       return {
         step1: lang === 'zh' ? '沟通目标' : 'Your goals',
@@ -36,10 +38,15 @@ export default function ConsultationForm({
         c1: lang === 'zh' ? '可接受的时间段（可选）' : 'Preferred time window (optional)',
         c2: lang === 'zh' ? '联系方式（可选）' : 'Contact info (optional)',
         step3: lang === 'zh' ? '确认并完成' : 'Confirm & finish',
-        disclaimer: lang === 'zh' ? '我已阅读并理解免责声明/隐私说明/服务边界（展示层）。' : 'I have read and understood the disclaimer/privacy notice/service boundary (display layer).',
+        disclaimer:
+          lang === 'zh'
+            ? '我已阅读并理解免责声明/隐私说明/服务边界（展示层）。'
+            : 'I have read and understood the disclaimer/privacy notice/service boundary (display layer).',
         btn: lang === 'zh' ? '确认并预约成功 →' : 'Confirm & book success →',
       };
     }
+
+    // shop
     return {
       step1: lang === 'zh' ? '选择服务包' : 'Choose a bundle',
       q1: lang === 'zh' ? '你想了解哪类服务？' : 'Which service category?',
@@ -47,12 +54,20 @@ export default function ConsultationForm({
       step2: lang === 'zh' ? '确认（展示层）' : 'Confirm (display layer)',
       c1: lang === 'zh' ? '免责声明/隐私/边界已确认（展示层）' : 'I confirm disclaimer/privacy/boundary (display layer)',
       step3: lang === 'zh' ? '确认并完成' : 'Confirm & finish',
-      disclaimer: lang === 'zh' ? '我已阅读免责声明/隐私说明/服务边界（展示层）。' : 'I have read the disclaimer/privacy notice/service boundary (display layer).',
+      disclaimer:
+        lang === 'zh'
+          ? '我已阅读免责声明/隐私说明/服务边界（展示层）。'
+          : 'I have read the disclaimer/privacy notice/service boundary (display layer).',
       btn: lang === 'zh' ? '确认并预约成功 →' : 'Confirm & book success →',
     };
-  })();
+  }, [lang, variant]);
 
   const [agreed, setAgreed] = useState(true);
+
+  const handleSuccess = () => {
+    if (!agreed) return;
+    onSuccess();
+  };
 
   return (
     <>
@@ -121,11 +136,17 @@ export default function ConsultationForm({
           <div style={{ marginTop: 12, display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 12 }}>
             <label style={{ display: 'block' }}>
               <div style={{ fontSize: 13, color: '#444', marginBottom: 6 }}>{copy.c1}</div>
-              <input placeholder={lang === 'zh' ? '例如：name@example.com' : 'e.g. name@example.com'} style={{ width: '100%', padding: 10, borderRadius: 12, border: '1px solid #ddd' }} />
+              <input
+                placeholder={lang === 'zh' ? '例如：name@example.com' : 'e.g. name@example.com'}
+                style={{ width: '100%', padding: 10, borderRadius: 12, border: '1px solid #ddd' }}
+              />
             </label>
             <label style={{ display: 'block' }}>
               <div style={{ fontSize: 13, color: '#444', marginBottom: 6 }}>{copy.c2}</div>
-              <select defaultValue={lang === 'zh' ? '不需要' : 'No'} style={{ width: '100%', padding: 10, borderRadius: 12, border: '1px solid #ddd' }}>
+              <select
+                defaultValue={lang === 'zh' ? '不需要' : 'No'}
+                style={{ width: '100%', padding: 10, borderRadius: 12, border: '1px solid #ddd' }}
+              >
                 <option>{lang === 'zh' ? '需要 VIP 人工' : 'Yes, VIP human'}</option>
                 <option>{lang === 'zh' ? '不需要' : 'No'}</option>
               </select>
@@ -135,11 +156,17 @@ export default function ConsultationForm({
           <div style={{ marginTop: 12, display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 12 }}>
             <label style={{ display: 'block' }}>
               <div style={{ fontSize: 13, color: '#444', marginBottom: 6 }}>{copy.c1}</div>
-              <input placeholder={lang === 'zh' ? '例如：周末/晚上' : 'e.g. weekends / evenings'} style={{ width: '100%', padding: 10, borderRadius: 12, border: '1px solid #ddd' }} />
+              <input
+                placeholder={lang === 'zh' ? '例如：周末/晚上' : 'e.g. weekends / evenings'}
+                style={{ width: '100%', padding: 10, borderRadius: 12, border: '1px solid #ddd' }}
+              />
             </label>
             <label style={{ display: 'block' }}>
               <div style={{ fontSize: 13, color: '#444', marginBottom: 6 }}>{copy.c2}</div>
-              <input placeholder={lang === 'zh' ? '例如：name@example.com' : 'e.g. name@example.com'} style={{ width: '100%', padding: 10, borderRadius: 12, border: '1px solid #ddd' }} />
+              <input
+                placeholder={lang === 'zh' ? '例如：name@example.com' : 'e.g. name@example.com'}
+                style={{ width: '100%', padding: 10, borderRadius: 12, border: '1px solid #ddd' }}
+              />
             </label>
           </div>
         ) : (
@@ -168,10 +195,7 @@ export default function ConsultationForm({
             fontWeight: 800,
             cursor: agreed ? 'pointer' : 'not-allowed',
           }}
-          onClick={() => {
-            if (!agreed) return;
-            onSuccess();
-          }}
+          onClick={handleSuccess}
         >
           {copy.btn}
         </button>
