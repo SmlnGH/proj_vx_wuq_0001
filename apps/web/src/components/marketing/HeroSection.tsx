@@ -3,6 +3,7 @@ import { t } from '../i18n/locale';
 import type { Lang } from '../i18n/locale';
 import LanguageSwitcher from '../i18n/LanguageSwitcher';
 import { HeroBackgroundMark, SectionDividerOrnament } from './icons/BrandMarks';
+import { uiTheme } from './theme';
 
 export default function HeroSection({ lang }: { lang: Lang }) {
   return (
@@ -17,7 +18,7 @@ export default function HeroSection({ lang }: { lang: Lang }) {
         position: 'absolute',
         inset: '0 -120px auto -120px',
         top: -40,
-        color: '#0ea5e9',
+        color: uiTheme.accent,
         pointerEvents: 'none',
         opacity: 0.9,
       }}>
@@ -35,7 +36,7 @@ export default function HeroSection({ lang }: { lang: Lang }) {
         }}
       >
         <div style={{ maxWidth: 640 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, color: '#2563eb' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, color: uiTheme.primary }}>
             <SectionDividerOrnament size={22} />
             <div style={{ fontSize: 12, letterSpacing: 0.6, textTransform: 'uppercase', opacity: 0.85 }}>
               {lang === 'zh' ? '高端咨询 · 可信交付' : 'Premium Guidance · Trust-first'}
@@ -43,7 +44,7 @@ export default function HeroSection({ lang }: { lang: Lang }) {
           </div>
 
           <h1 style={{ fontSize: 40, lineHeight: 1.05, margin: '14px 0 0', letterSpacing: -0.2 }}>{t('heroTitle', lang)}</h1>
-          <p style={{ marginTop: 12, color: '#4b5563', fontSize: 15, lineHeight: 1.8, maxWidth: 540 }}>
+          <p style={{ marginTop: 12, color: uiTheme.textMuted, fontSize: 15, lineHeight: 1.8, maxWidth: 540 }}>
             {t('heroSubtitle', lang)}
           </p>
 
@@ -51,9 +52,9 @@ export default function HeroSection({ lang }: { lang: Lang }) {
             <a
               href={`/${lang}/ai-tarot/next`}
               style={{
-                border: '1px solid rgba(37,99,235,0.35)',
-                background: 'rgba(37,99,235,0.06)',
-                color: '#1d4ed8',
+                border: `1px solid ${uiTheme.primaryBorderSoft}`,
+                background: uiTheme.primarySoft,
+                color: uiTheme.cta.primaryText,
                 padding: '10px 14px',
                 borderRadius: 999,
                 textDecoration: 'none',
@@ -66,9 +67,9 @@ export default function HeroSection({ lang }: { lang: Lang }) {
             <a
               href={`/${lang}/shop`}
               style={{
-                border: '1px solid #e5e7eb',
+                border: `1px solid ${uiTheme.border}`,
                 background: '#fff',
-                color: '#111827',
+                color: uiTheme.cta.ghostText,
                 padding: '10px 14px',
                 borderRadius: 999,
                 textDecoration: 'none',
