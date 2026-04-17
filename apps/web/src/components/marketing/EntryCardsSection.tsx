@@ -2,7 +2,6 @@ import React from 'react';
 import { t } from '../i18n/locale';
 import type { Lang } from '../i18n/locale';
 import { CardGlyph } from './icons/BrandMarks';
-import { uiTheme } from './theme';
 
 export default function EntryCardsSection({ lang }: { lang: Lang }) {
   const links = [
@@ -31,11 +30,11 @@ export default function EntryCardsSection({ lang }: { lang: Lang }) {
             key={x.key}
             href={x.href}
             style={{
-              border: `1px solid ${uiTheme.borderSoft}`,
+              border: '1px solid rgba(229,231,235,0.9)',
               borderRadius: 18,
               padding: 16,
               textDecoration: 'none',
-              color: uiTheme.text,
+              color: '#111',
               background: 'linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(248,250,252,1) 100%)',
               boxShadow: '0 10px 30px rgba(2,6,23,0.04)',
               transition: 'transform 140ms ease, box-shadow 140ms ease',
@@ -43,13 +42,13 @@ export default function EntryCardsSection({ lang }: { lang: Lang }) {
           >
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
               <div style={{ fontWeight: 800, fontSize: 16 }}>{x.title}</div>
-              <div style={{ color: uiTheme.accent, opacity: 0.85 }}>
+              <div style={{ color: '#2563eb', opacity: 0.85 }}>
                 <CardGlyph variant={x.glyph} />
               </div>
             </div>
-            <div style={{ marginTop: 10, color: uiTheme.textMuted, fontSize: 13, lineHeight: 1.6 }}>
+            <div style={{ marginTop: 10, color: '#374151', fontSize: 13, lineHeight: 1.6 }}>
               <div style={{ fontWeight: 700 }}>{t('entryCta', lang)} →</div>
-              <div style={{ fontSize: 12, marginTop: 4, color: uiTheme.textSubtle }}>
+              <div style={{ fontSize: 12, marginTop: 4, color: '#6b7280' }}>
                 {lang === 'zh' ? '隐私优先 · 节奏清晰' : 'Privacy-first · Clear next step'}
               </div>
             </div>

@@ -8,7 +8,6 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import type { Lang } from '../../../../components/i18n/locale';
 import ContentPageTemplate from '../../../../components/marketing/templates/ContentPageTemplate';
-import { uiTheme } from '../../../../components/marketing/theme';
 import LegalLinks from '../../../../components/legal/LegalLinks';
 import ConsultationForm from '../../components/ConsultationForm';
 
@@ -21,7 +20,7 @@ export default function ShopNextPage({ params }: { params: { lang: Lang } }) {
   return (
     <ContentPageTemplate lang={lang} title={title} lead={lead}>
       <LegalLinks lang={lang} />
-      <section style={{ border: `1px solid ${uiTheme.border}`, borderRadius: 16, padding: 18, marginTop: 16 }}>
+      <section style={{ border: '1px solid #e5e5e5', borderRadius: 16, padding: 18, marginTop: 16 }}>
         <ConsultationForm
           lang={lang}
           variant="shop"
