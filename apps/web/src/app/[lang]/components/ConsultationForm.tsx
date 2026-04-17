@@ -72,11 +72,18 @@ export default function ConsultationForm({ lang, variant, onSuccess }: Consultat
   const [shopDepth, setShopDepth] = useState('');
 
   const validate = () => {
-    // P2 minimal: render-only validation placeholder (no input state wired yet)
-    // Keep conservative: if no required runtime state exists, always pass.
-    // Next step will wire minimal required fields via controlled inputs.
-    setErrors({});
-    return true;
+    // P2 minimal: shop only real checks (no other variants yet)
+    if (variant !== 'shop') {
+      setErrors({});
+      return true;
+    }
+
+    const next: any = {};
+    if (!shopCategory) next.q = 'shopCategory_required';
+    if (!shopDepth) next.bundle = 'shopDepth_required';
+
+    setErrors(next);
+    return Object.keys(next).length === 0;
   };
 
   const handleSuccess = () => {
