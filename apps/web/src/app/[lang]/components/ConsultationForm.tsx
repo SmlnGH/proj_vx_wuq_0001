@@ -62,17 +62,14 @@ export default function ConsultationForm({ lang, variant, onSuccess }: Consultat
     };
   }, [lang, variant]);
 
-  const [agreed, setAgreed] = useState(true);
-
+  const [agreed, setAgreed] = useState(false);
   const [touchedAgreed, setTouchedAgreed] = useState(false);
 
   const handleSuccess = () => {
-    setTouchedAgreed(true);
     if (!agreed) return;
     onSuccess();
   };
 
-  const agreedErrorVisible = touchedAgreed && !agreed;
 
   return (
     <>
@@ -186,16 +183,18 @@ export default function ConsultationForm({ lang, variant, onSuccess }: Consultat
             type="checkbox"
             checked={agreed}
             onChange={(e) => {
-              setAgreed(e.target.checked);
               setTouchedAgreed(true);
+              setAgreed(e.target.checked);
             }}
           />
           <span style={{ fontSize: 13, color: '#444', lineHeight: 1.7 }}>{copy.disclaimer}</span>
         </label>
 
-        {agreedErrorVisible ? (
-          <div style={{ marginTop: 10, fontSize: 12, color: '#ef4444' }}>
-            {lang === 'zh' ? '请先勾选确认声明后再提交。' : 'Please confirm the declaration before submitting.'}
+        {touchedAgreed && !agreed ? (
+          <div style={{ marginTop: 10, fontSize: 12, color: '#ef4444', lineHeight: 1.4 }}>
+            {lang === 'zh'
+              ? '提交前请先勾选服务说明与联系同意'
+              : 'Please confirm the service notice and contact consent before submitting'}
           </div>
         ) : null}
 

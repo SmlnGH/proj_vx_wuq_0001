@@ -15,7 +15,7 @@ export default function AiTarotNextPage({ params }: { params: { lang: Lang } }) 
   const lang = (params.lang ?? 'zh') as Lang;
   const router = useRouter();
   const title = lang === 'zh' ? 'AI 占卜·提交你的需求' : 'AI Fortune · Submit your request';
-  const lead = lang === 'zh' ? '填写信息（展示层表单），一键进入成功反馈页。' : 'Fill in the details (display-layer form), then go to the success feedback page.';
+  const lead = lang === 'zh' ? '填写你的问题与时间偏好，我们确认后继续下一步' : 'Fill in your question and time preferences—after we confirm, we’ll proceed to the next step';
 
   return (
     <ContentPageTemplate lang={lang} title={title} lead={lead}>
