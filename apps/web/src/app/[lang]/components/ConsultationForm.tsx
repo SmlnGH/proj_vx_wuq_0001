@@ -64,8 +64,24 @@ export default function ConsultationForm({ lang, variant, onSuccess }: Consultat
 
   const [agreed, setAgreed] = useState(true);
 
+  // minimal errors/state (P2 step, conservative)
+  const [errors, setErrors] = useState<Partial<Record<'q' | 'contactOrTime' | 'bundle', string>>>({});
+
+  // minimal required inputs (shop) for controlled selects
+  const [shopCategory, setShopCategory] = useState('');
+  const [shopDepth, setShopDepth] = useState('');
+
+  const validate = () => {
+    // P2 minimal: render-only validation placeholder (no input state wired yet)
+    // Keep conservative: if no required runtime state exists, always pass.
+    // Next step will wire minimal required fields via controlled inputs.
+    setErrors({});
+    return true;
+  };
+
   const handleSuccess = () => {
     if (!agreed) return;
+    if (!validate()) return;
     onSuccess();
   };
 
@@ -86,22 +102,26 @@ export default function ConsultationForm({ lang, variant, onSuccess }: Consultat
             <label style={{ display: 'block' }}>
               <div style={{ fontSize: 13, color: '#444', marginBottom: 6 }}>{copy.q1}</div>
               <select
-                defaultValue={lang === 'zh' ? 'AI 占卜展示' : 'AI fortune display'}
+                value={shopCategory}
+                onChange={(e) => setShopCategory(e.target.value)}
                 style={{ width: '100%', padding: 10, borderRadius: 12, border: '1px solid #ddd' }}
               >
-                <option>{lang === 'zh' ? 'AI 占卜展示' : 'AI fortune display'}</option>
-                <option>{lang === 'zh' ? 'VIP 人工深度' : 'VIP human deep dive'}</option>
-                <option>{lang === 'zh' ? '双语咨询引导' : 'Bilingual consultation guidance'}</option>
+                <option value="">{lang === 'zh' ? '请选择' : 'Select'}</option>
+                <option value={lang === 'zh' ? 'AI 占卜展示' : 'AI fortune display'}>{lang === 'zh' ? 'AI 占卜展示' : 'AI fortune display'}</option>
+                <option value={lang === 'zh' ? 'VIP 人工深度' : 'VIP human deep dive'}>{lang === 'zh' ? 'VIP 人工深度' : 'VIP human deep dive'}</option>
+                <option value={lang === 'zh' ? '双语咨询引导' : 'Bilingual consultation guidance'}>{lang === 'zh' ? '双语咨询引导' : 'Bilingual consultation guidance'}</option>
               </select>
             </label>
             <label style={{ display: 'block' }}>
               <div style={{ fontSize: 13, color: '#444', marginBottom: 6 }}>{copy.q2}</div>
               <select
-                defaultValue={lang === 'zh' ? '标准' : 'Standard'}
+                value={shopDepth}
+                onChange={(e) => setShopDepth(e.target.value)}
                 style={{ width: '100%', padding: 10, borderRadius: 12, border: '1px solid #ddd' }}
               >
-                <option>{lang === 'zh' ? '标准' : 'Standard'}</option>
-                <option>{lang === 'zh' ? '更深度' : 'More depth'}</option>
+                <option value="">{lang === 'zh' ? '请选择' : 'Select'}</option>
+                <option value={lang === 'zh' ? '标准' : 'Standard'}>{lang === 'zh' ? '标准' : 'Standard'}</option>
+                <option value={lang === 'zh' ? '更深度' : 'More depth'}>{lang === 'zh' ? '更深度' : 'More depth'}</option>
               </select>
             </label>
           </>
