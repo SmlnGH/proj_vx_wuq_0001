@@ -31,16 +31,46 @@ export default function BookingSuccessPage({ params }: { params: { lang: Lang } 
       <LegalLinks lang={lang} />
       <section style={{ border: '1px solid #e5e5e5', borderRadius: 16, padding: 18, marginTop: 16 }}>
         <h2 style={{ fontSize: 20, margin: 0 }}>{copy.h1}</h2>
-        <div style={{ marginTop: 12, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-          <a href={`/${lang}/ai-tarot`} style={{ border: '1px solid #e5e5e5', color: '#111', padding: '10px 14px', borderRadius: 999, textDecoration: 'none' }}>
-            {copy.backAi}
+
+        <p style={{ marginTop: 10, color: '#4b5563', lineHeight: 1.8 }}>
+          {lang === 'zh'
+            ? '我们会在尽快确认你的信息后联系你。通常 1-2 个工作日内完成确认与下一步安排。'
+            : 'We’ll confirm your details and reach out shortly. Typically within 1–2 business days for the next step.'}
+        </p>
+
+        <div style={{ marginTop: 10, color: '#6b7280', fontSize: 13, lineHeight: 1.7 }}>
+          {lang === 'zh'
+            ? '下一步建议：继续浏览你感兴趣的方向，或直接返回对应入口完善偏好。'
+            : 'Next suggested action: continue exploring what you like, or go back to refine your preferences.'}
+        </div>
+
+        <div style={{ marginTop: 14, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+          <a
+            href={`/${lang}`}
+            style={{
+              border: '1px solid rgba(37,99,235,0.35)',
+              background: 'rgba(37,99,235,0.08)',
+              color: '#1d4ed8',
+              padding: '10px 14px',
+              borderRadius: 999,
+              textDecoration: 'none',
+              fontWeight: 800,
+            }}
+          >
+            {lang === 'zh' ? '返回首页继续浏览' : 'Back to home & keep exploring'}
           </a>
-          <a href={`/${lang}/vip-tarot`} style={{ border: '1px solid #e5e5e5', color: '#111', padding: '10px 14px', borderRadius: 999, textDecoration: 'none' }}>
-            {copy.backVip}
-          </a>
-          <a href={`/${lang}/shop`} style={{ border: '1px solid #e5e5e5', color: '#111', padding: '10px 14px', borderRadius: 999, textDecoration: 'none' }}>
-            {copy.backShop}
-          </a>
+
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            <a href={`/${lang}/ai-tarot`} style={{ border: '1px solid #e5e5e5', color: '#111', padding: '10px 14px', borderRadius: 999, textDecoration: 'none' }}>
+              {copy.backAi}
+            </a>
+            <a href={`/${lang}/vip-tarot`} style={{ border: '1px solid #e5e5e5', color: '#111', padding: '10px 14px', borderRadius: 999, textDecoration: 'none' }}>
+              {copy.backVip}
+            </a>
+            <a href={`/${lang}/shop`} style={{ border: '1px solid #e5e5e5', color: '#111', padding: '10px 14px', borderRadius: 999, textDecoration: 'none' }}>
+              {copy.backShop}
+            </a>
+          </div>
         </div>
       </section>
     </ContentPageTemplate>

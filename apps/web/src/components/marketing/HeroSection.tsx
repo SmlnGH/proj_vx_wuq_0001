@@ -61,7 +61,7 @@ export default function HeroSection({ lang }: { lang: Lang }) {
                 fontSize: 14,
               }}
             >
-              {lang === 'zh' ? '预约咨询 →' : 'Book a consultation →'}
+              {lang === 'zh' ? '立即预约咨询 →' : 'Book a consultation →'}
             </a>
             <a
               href={`/${lang}/shop`}
@@ -84,7 +84,7 @@ export default function HeroSection({ lang }: { lang: Lang }) {
         <div>
           <LanguageSwitcher lang={lang} />
           <div style={{ marginTop: 10, fontSize: 12, color: '#6b7280', textAlign: 'right' }}>
-            {lang === 'zh' ? '简洁流程 · 隐私优先' : 'Simple flow · Privacy-first'}
+            {lang === 'zh' ? '轻量流程 · 隐私优先' : 'Light flow · Privacy-first'}
           </div>
         </div>
       </div>
