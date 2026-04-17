@@ -54,10 +54,25 @@ export default function BookingSuccessPage({ params }: { params: { lang: Lang } 
               padding: '10px 14px',
               borderRadius: 999,
               textDecoration: 'none',
-              fontWeight: 800,
+              fontWeight: 900,
             }}
           >
             {lang === 'zh' ? '返回首页继续浏览' : 'Back to home & keep exploring'}
+          </a>
+
+          <a
+            href={`/${lang}/shop/next`}
+            style={{
+              border: '1px solid #e5e5e5',
+              background: '#fff',
+              color: '#111827',
+              padding: '10px 14px',
+              borderRadius: 999,
+              textDecoration: 'none',
+              fontWeight: 750,
+            }}
+          >
+            {lang === 'zh' ? '查看其他入口' : 'See other entries'}
           </a>
 
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>

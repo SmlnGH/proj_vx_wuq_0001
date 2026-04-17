@@ -13,7 +13,12 @@ export default function ShopPage({ params }: { params: { lang: Lang } }) {
     <ContentPageTemplate lang={lang} title={t('shopPageTitle', lang)} lead={t('shopPageLead', lang)}>
       <LegalLinks lang={lang} />
       <section style={{ border: '1px solid #e5e5e5', borderRadius: 16, padding: 18, marginTop: 16 }}>
-        <h2 style={{ fontSize: 20, margin: 0 }}>{lang === 'zh' ? '精选入口（展示）' : 'Featured Entries (Display)'}</h2>
+        <h2 style={{ fontSize: 20, margin: 0 }}>{lang === 'zh' ? '精选入口（展示层）' : 'Featured Entries (Display)'}</h2>
+        <p style={{ marginTop: 10, color: '#4b5563', lineHeight: 1.8 }}>
+          {lang === 'zh'
+            ? '先选你想探索的方向，再进入对应入口；确认偏好后我们会把下一步反馈带给你。'
+            : 'Pick the direction you want to explore, then enter the matching flow; once we confirm your preferences, we’ll deliver the next feedback.'}
+        </p>
         <div style={{ marginTop: 12, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
           <a
             href={`/${lang}/shop/next`}

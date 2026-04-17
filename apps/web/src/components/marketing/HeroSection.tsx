@@ -38,7 +38,7 @@ export default function HeroSection({ lang }: { lang: Lang }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, color: '#2563eb' }}>
             <SectionDividerOrnament size={22} />
             <div style={{ fontSize: 12, letterSpacing: 0.6, textTransform: 'uppercase', opacity: 0.85 }}>
-              {lang === 'zh' ? '高端咨询 · 可信交付' : 'Premium Guidance · Trust-first'}
+              {lang === 'zh' ? '高端 · 信赖' : 'Premium · Trust'}
             </div>
           </div>
 
@@ -84,7 +84,7 @@ export default function HeroSection({ lang }: { lang: Lang }) {
         <div>
           <LanguageSwitcher lang={lang} />
           <div style={{ marginTop: 10, fontSize: 12, color: '#6b7280', textAlign: 'right' }}>
-            {lang === 'zh' ? '轻量流程 · 隐私优先' : 'Light flow · Privacy-first'}
+            {lang === 'zh' ? '克制流程 · 隐私优先' : 'Quiet flow · Privacy-first'}
           </div>
         </div>
       </div>
