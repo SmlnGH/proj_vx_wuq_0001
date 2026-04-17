@@ -1,3 +1,6 @@
+export const runtime = 'edge';
+
+
 import React from 'react';
 import type { Lang } from '../../../../components/i18n/locale';
 import ContentPageTemplate from '../../../../components/marketing/templates/ContentPageTemplate';
