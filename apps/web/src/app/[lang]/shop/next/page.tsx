@@ -15,7 +15,7 @@ export default function ShopNextPage({ params }: { params: { lang: Lang } }) {
   const lang = (params.lang ?? 'zh') as Lang;
   const router = useRouter();
   const title = lang === 'zh' ? '商城·选择服务包' : 'Shop · Choose a service bundle';
-  const lead = lang === 'zh' ? '选择你感兴趣的方向（展示层表单），一键进入成功反馈页。' : 'Choose the direction you’re interested in (display-layer form), then go to the success feedback page.';
+  const lead = lang === 'zh' ? '选择你感兴趣的方向（展示层表单），一键进入成功反馈页。' : 'Choose what you want to explore (display-layer form), then go to the success feedback page.';
 
   return (
     <ContentPageTemplate lang={lang} title={title} lead={lead}>

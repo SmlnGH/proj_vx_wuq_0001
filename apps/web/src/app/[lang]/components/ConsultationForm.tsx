@@ -64,10 +64,15 @@ export default function ConsultationForm({ lang, variant, onSuccess }: Consultat
 
   const [agreed, setAgreed] = useState(true);
 
+  const [touchedAgreed, setTouchedAgreed] = useState(false);
+
   const handleSuccess = () => {
+    setTouchedAgreed(true);
     if (!agreed) return;
     onSuccess();
   };
+
+  const agreedErrorVisible = touchedAgreed && !agreed;
 
   return (
     <>
@@ -177,9 +182,22 @@ export default function ConsultationForm({ lang, variant, onSuccess }: Consultat
       <section style={{ border: '1px solid #e5e5e5', borderRadius: 16, padding: 18, marginTop: 16 }}>
         <h2 style={{ fontSize: 18, margin: 0 }}>{copy.step3}</h2>
         <label style={{ display: 'flex', gap: 10, marginTop: 12, alignItems: 'flex-start' }}>
-          <input type="checkbox" checked={agreed} onChange={(e) => setAgreed(e.target.checked)} />
+          <input
+            type="checkbox"
+            checked={agreed}
+            onChange={(e) => {
+              setAgreed(e.target.checked);
+              setTouchedAgreed(true);
+            }}
+          />
           <span style={{ fontSize: 13, color: '#444', lineHeight: 1.7 }}>{copy.disclaimer}</span>
         </label>
+
+        {agreedErrorVisible ? (
+          <div style={{ marginTop: 10, fontSize: 12, color: '#ef4444' }}>
+            {lang === 'zh' ? '请先勾选确认声明后再提交。' : 'Please confirm the declaration before submitting.'}
+          </div>
+        ) : null}
 
         <button
           type="button"

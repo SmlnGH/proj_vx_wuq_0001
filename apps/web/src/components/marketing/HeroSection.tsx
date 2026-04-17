@@ -61,7 +61,7 @@ export default function HeroSection({ lang }: { lang: Lang }) {
                 fontSize: 14,
               }}
             >
-              {lang === 'zh' ? '开始预约咨询 →' : 'Book a consultation →'}
+              {lang === 'zh' ? '预约咨询 →' : 'Book a consultation →'}
             </a>
             <a
               href={`/${lang}/shop`}
