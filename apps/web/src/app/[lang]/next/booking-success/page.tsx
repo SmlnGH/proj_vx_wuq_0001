@@ -34,7 +34,7 @@ export default function BookingSuccessPage({ params }: { params: { lang: Lang } 
 
         <p style={{ marginTop: 10, color: '#4b5563', lineHeight: 1.8 }}>
           {lang === 'zh'
-            ? '我们会在尽快确认你的信息后联系你。通常 1-2 个工作日内完成确认与下一步安排。'
+            ? '我们会尽快确认你的信息并联系你。通常 1-2 个工作日内安排下一步。'
             : 'We’ll confirm your details and reach out shortly. Typically within 1–2 business days for the next step.'}
         </p>
 
